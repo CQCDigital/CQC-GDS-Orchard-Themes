@@ -1,0 +1,78 @@
+﻿@using OrchardCore.ContentManagement.Metadata.Models
+@using OrchardCore.Html.ViewModels
+@model HtmlBodyPartViewModel
+@{
+    var lib = "/Cqc.Orchard.GdsAdminTheme/";
+}
+
+<script src="@(lib)tinymce/tinymce.js"></script>
+<script>
+    tinymce.init(
+        {
+            selector: '#tinyGds',
+            height: 600,
+            content_css: "@(lib)gds/3.7/govuk-frontend-3.7.0.min.css",
+            body_class: "",
+
+            plugins: 'code fullscreen table preview anchor template lists link image visualblocks',
+            menubar: 'file edit insert view table tools help',
+            toolbar_mode: 'floating',
+            toolbar: [
+                'styleselect | alignleft aligncenter alignright alignjustify | bullist numlist | ' +
+                'undo redo | link unlink image | anchor | table template | ' +
+                'code fullscreen preview visualblocks'
+            ],
+
+            style_formats: [
+                {
+                    title: "Headings", items: [
+                        { title: "Header 1", format: "h1" },
+                        { title: "Header 2", format: "h2" },
+                        { title: "Header 3", format: "h3" },
+                        { title: "Header 4", format: "h4" }
+                    ]
+                },
+                { title: "Paragraph", format: "p" },
+            ],
+
+            extended_valid_elements: [
+                'p[class=govuk-body]',
+                'a[class=govuk-link|href|title]',
+                'ul[class=govuk-list govuk-list--bullet]',
+                'ol[class=govuk-list govuk-list--number]',
+                'table[class=govuk-table]',
+                'thead[class=govuk-table__head]',
+                'tbody [class=govuk-table__body]',
+                'th[class=govuk-table__header]',
+                'td[class=govuk-table__cell]',
+                'h1[class=govuk-heading-xl]',
+                'h2[class=govuk-heading-l]',
+                'h3[class=govuk-heading-m]',
+                'h4[class=govuk-heading-s]'
+            ],
+
+            templates: [
+                { title: 'Accordian', description: "", url: '@(lib)templates/accordian.html' },
+                { title: 'Button', description: "", url: '@(lib)templates/button.html' },
+                { title: 'Details', description: "", url: '@(lib)templates/details.html' },
+                { title: 'Inset Text', description: "", url: '@(lib)templates/inset-text.html' },
+                { title: 'Panel', description: "", url: '@(lib)templates/panel.html' },
+                { title: 'Table', description: "", url: '@(lib)templates/table.html' },
+                { title: 'Tabs', description: "", url: '@(lib)templates/tabs.html' },
+                { title: 'Warning', description: "", url: '@(lib)templates/warning.html' },
+                { title: 'Columns 2 thirds / 1 third', description: "", url: '@(lib)templates/columns-2thirds-1third.html' },
+                { title: 'Columns 1 third / 2 thirds', description: "", url: '@(lib)templates/columns-1third-2thirds.html' },
+                { title: 'Columns 1 half / 1 half', description: "", url: '@(lib)templates/columns-1half-1half.html' },
+                { title: 'Columns 1 third / 1 third / 1 third', description: "", url: '@(lib)templates/columns-1third-1third-1third.html' }
+            ],
+
+        }
+
+    );
+</script>
+
+<div class="form-group">
+    <label asp-for="Html">@Model.TypePartDefinition.DisplayName()</label>
+    <textarea id="tinyGds" asp-for="Html"></textarea>
+    <span class="hint">@T["The body of the content item."]</span>
+</div>
