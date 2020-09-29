@@ -22,8 +22,6 @@ var fs = require("graceful-fs"),
     postcss = require('gulp-postcss'),
     rtl = require('postcss-rtl'),
     babel = require('gulp-babel');
-    //gdsadmintheme = require('./Cqc.Orchard.GdsAdminTheme/wwwroot/gulpfile'),
-    //gdstheme = require('./Cqc.Orchard.GdsTheme');
 
 
 // For compat with older versions of Node.js.
@@ -93,48 +91,11 @@ gulp.task('help', function() {
     `);
   });
 
-gulp.task("build-agencytheme", function(done){
-	return buildAgencyTheme(done);
-});
 
-gulp.task("build-blogtheme", function(done){
-	return buildBlogTheme(done);
-});
-
-gulp.task("build-comingsoontheme", function(done){
-	return buildComingSoonTheme(done);
-});
-
-gulp.task("build-themes", function(done){
-    buildAgencyTheme(() => buildBlogTheme (() => buildComingSoonTheme(done)) );
-});
-
-
-gulp.task( 'build',  gulp.series([ 'build-assets', 'build-themes' ]) );
-gulp.task( 'rebuild',  gulp.series([ 'rebuild-assets', 'build-themes' ]) );
+gulp.task( 'build',  gulp.series([ 'build-assets' ]) );
+gulp.task( 'rebuild',  gulp.series([ 'rebuild-assets' ]) );
 gulp.task( 'default',  gulp.series([ 'build' ]) );
 
-/*
-** Build Themes
-*/
-
-function buildAgencyTheme(done){
-    var cwd = process.cwd();      
-    process.chdir('./src/OrchardCore.Themes/TheAgencyTheme/wwwroot');       
-	agencytheme.build( ()=> {
-         process.chdir(cwd);
-         done();
-    });
-}
-
-function buildBlogTheme(done){
-    var cwd = process.cwd();      
-    process.chdir('./src/OrchardCore.Themes/TheBlogTheme/wwwroot');    
-	blogtheme.build( ()=> {
-        process.chdir(cwd);
-        done();
-    });
-}
 
 /*
 ** ASSET GROUPS
@@ -142,7 +103,7 @@ function buildBlogTheme(done){
 
 function getAssetGroups() {
     console.log("Hello");
-    var assetManifestPaths = glob.sync("./Cqc.Orchard.*Theme/Assets.json", {});
+    var assetManifestPaths = glob.sync("./Themes/*/Assets.json", {});
     console.log(assetManifestPaths);
     var assetGroups = [];
     assetManifestPaths.forEach(function (assetManifestPath) {

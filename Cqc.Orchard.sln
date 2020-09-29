@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{A4F746E4-9A6F-4828-9AFA-E04848E79B5B}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		gulpfile.js = gulpfile.js
 		LICENSE = LICENSE
 		package.json = package.json
 		README.md = README.md

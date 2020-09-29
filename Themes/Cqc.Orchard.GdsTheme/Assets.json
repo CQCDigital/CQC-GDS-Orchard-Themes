@@ -1,0 +1,9 @@
+[
+  {
+    "generateSourceMaps": false,
+    "inputs": [
+      "node_modules/govuk-frontend/govuk/all.scss"
+    ],
+    "output": "wwwroot/gds.css"
+  }
+]
