@@ -139,6 +139,7 @@
             },
             "AutoroutePartSettings": {
               "AllowCustomPath": true,
+              "ShowHomepageOption": true,
               "AllowUpdatePath": true
             },
             "ContentIndexSettings": {}
@@ -355,5 +356,5 @@
       ]
     }
   ],
-  "Serial": 99
+  "Serial": 101
 }
