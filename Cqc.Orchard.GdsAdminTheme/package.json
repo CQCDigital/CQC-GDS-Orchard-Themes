@@ -1,0 +1,8 @@
+{
+  "name": "Cqc.Orchard.GdsAdminTheme",
+  "description": "GDS Admin Theme with TinyMCE GDS Editor",
+  "version": "1.0.0",
+  "dependencies": {
+    "govuk-frontend": "3.9.0"
+  }
+}
