@@ -1,0 +1,7 @@
+{
+  "name": "Cqc.Orchard.GdsTheme",
+  "version": "1.0.0",
+  "dependencies": {
+    "govuk-frontend": "3.9.0"
+  }
+}

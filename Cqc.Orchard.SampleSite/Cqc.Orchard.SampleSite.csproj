@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cqc.Orchard.GdsAdminTheme\Cqc.Orchard.GdsAdminTheme.csproj" />
+    <ProjectReference Include="..\Cqc.Orchard.GdsTheme\Cqc.Orchard.GdsTheme.csproj" />
   </ItemGroup>
 
 </Project>
