@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cqc.Orchard.SampleSite", "Cqc.Orchard.SampleSite\Cqc.Orchard.SampleSite.csproj", "{0063D1BC-BE67-45D7-B491-3E469DAD21E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cqc.Orchard.GdsAdminTheme", "Cqc.Orchard.GdsAdminTheme\Cqc.Orchard.GdsAdminTheme.csproj", "{1FE9F87D-1E0E-4C14-8B34-2C2C2CC26BBF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{94BBB4A9-3EF0-4DB1-9F41-C9B5471CA644}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cqc.Orchard.GdsTheme", "Cqc.Orchard.GdsTheme\Cqc.Orchard.GdsTheme.csproj", "{845EACF6-69EB-4AE8-BD78-6C611F7F2269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cqc.Orchard.GdsAdminTheme", "Themes\Cqc.Orchard.GdsAdminTheme\Cqc.Orchard.GdsAdminTheme.csproj", "{1FE9F87D-1E0E-4C14-8B34-2C2C2CC26BBF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cqc.Orchard.GdsTheme", "Themes\Cqc.Orchard.GdsTheme\Cqc.Orchard.GdsTheme.csproj", "{845EACF6-69EB-4AE8-BD78-6C611F7F2269}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{A4F746E4-9A6F-4828-9AFA-E04848E79B5B}"
 	ProjectSection(SolutionItems) = preProject
