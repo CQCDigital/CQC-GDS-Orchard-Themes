@@ -2,16 +2,16 @@
 @using OrchardCore.Html.ViewModels
 @model HtmlBodyPartViewModel
 @{
-    var lib = "/Cqc.Orchard.GdsAdminTheme/";
+    var theme = "/Cqc.Orchard.GdsAdminTheme/";
 }
 
-<script src="@(lib)tinymce/tinymce.js"></script>
+<script src="@(theme)tinymce/tinymce.js"></script>
 <script>
     tinymce.init(
         {
             selector: '#tinyGds',
             height: 600,
-            content_css: "@(lib)gds/3.7/govuk-frontend-3.7.0.min.css",
+            content_css: "@(theme)gds.min.css",
             body_class: "",
 
             plugins: 'code fullscreen table preview anchor template lists link image visualblocks',
@@ -52,18 +52,18 @@
             ],
 
             templates: [
-                { title: 'Accordian', description: "", url: '@(lib)templates/accordian.html' },
-                { title: 'Button', description: "", url: '@(lib)templates/button.html' },
-                { title: 'Details', description: "", url: '@(lib)templates/details.html' },
-                { title: 'Inset Text', description: "", url: '@(lib)templates/inset-text.html' },
-                { title: 'Panel', description: "", url: '@(lib)templates/panel.html' },
-                { title: 'Table', description: "", url: '@(lib)templates/table.html' },
-                { title: 'Tabs', description: "", url: '@(lib)templates/tabs.html' },
-                { title: 'Warning', description: "", url: '@(lib)templates/warning.html' },
-                { title: 'Columns 2 thirds / 1 third', description: "", url: '@(lib)templates/columns-2thirds-1third.html' },
-                { title: 'Columns 1 third / 2 thirds', description: "", url: '@(lib)templates/columns-1third-2thirds.html' },
-                { title: 'Columns 1 half / 1 half', description: "", url: '@(lib)templates/columns-1half-1half.html' },
-                { title: 'Columns 1 third / 1 third / 1 third', description: "", url: '@(lib)templates/columns-1third-1third-1third.html' }
+                { title: 'Accordian', description: "", url: '@(theme)templates/accordian.html' },
+                { title: 'Button', description: "", url: '@(theme)templates/button.html' },
+                { title: 'Details', description: "", url: '@(theme)templates/details.html' },
+                { title: 'Inset Text', description: "", url: '@(theme)templates/inset-text.html' },
+                { title: 'Panel', description: "", url: '@(theme)templates/panel.html' },
+                { title: 'Table', description: "", url: '@(theme)templates/table.html' },
+                { title: 'Tabs', description: "", url: '@(theme)templates/tabs.html' },
+                { title: 'Warning', description: "", url: '@(theme)templates/warning.html' },
+                { title: 'Columns 2 thirds / 1 third', description: "", url: '@(theme)templates/columns-2thirds-1third.html' },
+                { title: 'Columns 1 third / 2 thirds', description: "", url: '@(theme)templates/columns-1third-2thirds.html' },
+                { title: 'Columns 1 half / 1 half', description: "", url: '@(theme)templates/columns-1half-1half.html' },
+                { title: 'Columns 1 third / 1 third / 1 third', description: "", url: '@(theme)templates/columns-1third-1third-1third.html' }
             ],
 
         }
