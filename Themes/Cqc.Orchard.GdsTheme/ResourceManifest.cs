@@ -12,6 +12,11 @@ namespace Cqc.Orchard.GdsTheme
                 .DefineStyle("GDS")
                 .SetUrl("~/Cqc.Orchard.GdsTheme/gds.min.css", "~/Cqc.Orchard.GdsTheme/gds.min.css")
                 .SetVersion("3.9.0");
+
+            manifest
+                .DefineScript("GDS")
+                .SetUrl("~/Cqc.Orchard.GdsTheme/gds.min.js", "~/Cqc.Orchard.GdsTheme/gds.js")
+                .SetVersion("3.9.0");
         }
     }
 }

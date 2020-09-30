@@ -4,8 +4,8 @@
     "build": "gulp build",
     "rebuild": "gulp rebuild",
     "watch": " gulp watch",
-    "install:Cqc.Orchard.GdsTheme": "cd Cqc.Orchard.GdsTheme && npm install",
-    "install:Cqc.Orchard.GdsAdminTheme": "cd Cqc.Orchard.GdsAdminTheme && npm install",
+    "install:Cqc.Orchard.GdsTheme": "cd Themes/Cqc.Orchard.GdsTheme && npm install",
+    "install:Cqc.Orchard.GdsAdminTheme": "cd Themes/Cqc.Orchard.GdsAdminTheme && npm install",
     "postinstall": "run-s install:*"
   },
   "devDependencies": {
