@@ -1,0 +1,16 @@
+[
+  {
+    "generateSourceMaps": false,
+    "inputs": [
+      "node_modules/govuk-frontend/govuk/all.scss"
+    ],
+    "output": "wwwroot/gds.css"
+  },
+  {
+    "generateSourceMaps": false,
+    "inputs": [
+      "node_modules/govuk-frontend/govuk/all.js"
+    ],
+    "output": "wwwroot/gds.js"
+  }
+]
