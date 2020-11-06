@@ -1,0 +1,19 @@
+﻿@*
+    ** BagPart
+    ** Overrides the standard BagPart template to add StepCount to each item in bag.
+    ** No HTML or styling is added in this view.
+    ** Rest of template code is taken from standard BagPart view.
+*@
+@inject OrchardCore.ContentManagement.Display.IContentItemDisplayManager ContentItemDisplayManager
+@{
+    var stepCount = 1;
+}
+
+@foreach (var item in Model.BagPart.ContentItems)
+{
+    item.Content.StepCount = stepCount;
+    var itemContent = await ContentItemDisplayManager.BuildDisplayAsync(item, Model.BuildPartDisplayContext.Updater, Model.Settings.DisplayType ?? "Summary", Model.BuildPartDisplayContext.GroupId);
+
+    @await DisplayAsync(itemContent)
+    stepCount++;
+}
