@@ -76,16 +76,28 @@
         @await RenderSectionAsync("Header", required: false)
         <main class="govuk-main-wrapper " id="main-content" role="main">
             @await RenderSectionAsync("Messages", required: false)
-            
+        
+            @if (IsSectionDefined("AsideFirst"))
+            {
+                <div class="govuk-grid-column-one-third">
+                    @await RenderSectionAsync("AsideFirst", required: false)
+                </div>
+            }
+
             @{
-                var colClass = IsSectionDefined("AsideSecond")
-                    ? "two-thirds"
-                    : "three-thirds";
+                var columnsDefined = (new [] {IsSectionDefined("AsideFirst"), IsSectionDefined("AsideSecond") }).Count(c => c);
+                var colClass = columnsDefined switch
+                {
+                    0 => "three-thirds",
+                    1 => "two-thirds",
+                    2 => "one-third",
+                    _ => "unknown"
+                };
             }
             <div class="govuk-grid-column-@colClass">
                 @await RenderBodyAsync()
             </div>
-            
+
             @if (IsSectionDefined("AsideSecond"))
             {
                 <div class="govuk-grid-column-one-third">
