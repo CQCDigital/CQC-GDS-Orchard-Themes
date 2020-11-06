@@ -1,0 +1,40 @@
+@{
+    var stepCount = Model.ContentItem.Content.StepCount;
+}
+
+<li class="app-step-nav__step js-step" list-item-id="reg_step1_dbs_check_list" aria-expanded="false" aria-controls="step-panel-register-to-provide-care-1">
+    <div id="reg_step1_dbs_check_container" class="app-step-nav__header js-toggle-panel govuk-width-container" data-position="@stepCount" aria-expanded="false" aria-controls="step-panel-register-to-provide-care-1">
+        <h2 class="app-step-nav__title govuk-heading-l">
+            <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                    <span class="app-step-nav__circle-background">
+                        <span class="govuk-visually-hidden">Step</span> @stepCount
+                                                                        
+                    </span>
+                </span>
+            </span>
+
+            <span class="js-step-title">
+                <span class="js-step-title-text">
+                    <button id="reg_step2_dbc_check_button" class="govuk-button app-step-nav__button app-step-nav__button--title js-step-title-button" aria-expanded="false" aria-controls="step-panel-register-to-provide-care-1" data-module="govuk-button">
+                        <span class="js-step-title-text">
+                            @Model.Content.TitlePart.Title
+                        </span>
+                        <span data-show="true" id="reg_step2_show" class="app-step-nav__toggle-link js-toggle-link" aria-hidden="true">Show</span>
+                    </button>
+                </span>
+            </span>
+        </h2>
+    </div>
+
+    <div class="app-step-nav__panel js-panel js-hidden govuk-width-container" id="step-panel-register-to-provide-care-2" style="display: none;">
+        @await DisplayAsync(Model.Content.HtmlBodyPart)
+        @await DisplayAsync(Model.Content.Items[3])
+        @*
+        <ol class="app-step-nav__list govuk-list govuk-list--number" list-id="reg_step2_dbs_check_lists" data-length="1">
+            <li gds="" class="app-step-nav__list-item js-list-item" list-item-id="reg_step2_dbs_check_list_link">
+                <a id="link_dbs_checks" title="Go to DBS checks" href="/prepare-application/dbs-checks" class="govuk-link">Get a DBS check</a>.
+            </li>
+        </ol>*@
+    </div>
+</li>
