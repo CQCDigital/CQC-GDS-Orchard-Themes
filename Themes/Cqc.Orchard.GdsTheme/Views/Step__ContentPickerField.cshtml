@@ -1,0 +1,21 @@
+@model OrchardCore.ContentFields.ViewModels.DisplayContentPickerFieldViewModel
+@inject OrchardCore.ContentManagement.IContentManager ContentManager
+@inject OrchardCore.ContentManagement.Display.IContentItemDisplayManager ContentItemDisplayManager
+@{
+    var contentItems = await ContentManager.GetAsync(Model.ContentItemIds);
+}
+
+
+@if (contentItems.Any())
+{
+    <ol class="app-step-nav__list">
+    @foreach (var contentItem in contentItems)
+    {
+        <li class="app-step-nav__list-item js-list-item">
+            <a display-for="@contentItem" class="govuk-link">
+                @contentItem.DisplayText
+            </a>
+        </li>
+    }
+    </ol>
+}

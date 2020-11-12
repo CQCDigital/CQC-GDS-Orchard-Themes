@@ -22,10 +22,10 @@
     <style asp-name="GDS"></style>
     <!--<![endif]-->
     <!--[if IE 8]>
-      <link href="/govuk-frontend/all-ie8.css" rel="stylesheet">
+        <link href="/govuk-frontend/all-ie8.css" rel="stylesheet">
     <![endif]-->
     <!--[if lt IE 9]>
-      <script src="/html5-shiv/html5shiv.js"></script>
+        <script src="/html5-shiv/html5shiv.js"></script>
     <![endif]-->
     @*<style asp-src="~/TheTheme/css/sticky-footer-navbar.css"></style>*@
     <resources type="Meta" />
@@ -61,17 +61,58 @@
         </div>
     </header>
 
-    <div class="govuk-width-container ">
+    <div class="govuk-width-container app-width-container">
+        <div class="govuk-phase-banner">
+            <p class="govuk-phase-banner__content">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">
+                    alpha
+                </strong>
+                <span class="govuk-phase-banner__text">
+                    This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+                </span>
+            </p>
+        </div>
+
         @await RenderSectionAsync("Header", required: false)
         <main class="govuk-main-wrapper " id="main-content" role="main">
             @await RenderSectionAsync("Messages", required: false)
-            @await RenderBodyAsync()
+        
+            @if (IsSectionDefined("AsideFirst"))
+            {
+                <div class="govuk-grid-column-one-third">
+                    @await RenderSectionAsync("AsideFirst", required: false)
+                </div>
+            }
+
+            @{
+                var columnsDefined = (new [] {IsSectionDefined("AsideFirst"), IsSectionDefined("AsideSecond") }).Count(c => c);
+                var colClass = columnsDefined switch
+                {
+                    0 => "three-thirds",
+                    1 => "two-thirds",
+                    2 => "one-third",
+                    _ => "unknown"
+                };
+            }
+            <div class="govuk-grid-column-@colClass">
+                @await RenderBodyAsync()
+            </div>
+
+            @if (IsSectionDefined("AsideSecond"))
+            {
+                <div class="govuk-grid-column-one-third">
+                    @await RenderSectionAsync("AsideSecond", required: false)
+                </div>
+            }
         </main>
     </div>
 
+    
+
     @await RenderSectionAsync("Footer", required: false)
     <resources type="FootScript" />
-
+    
+    <div style="clear:both"></div>
     <footer class="govuk-footer " role="contentinfo">
         <div class="govuk-width-container ">
             <div class="govuk-footer__meta">

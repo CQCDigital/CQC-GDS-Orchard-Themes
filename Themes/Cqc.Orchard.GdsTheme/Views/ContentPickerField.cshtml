@@ -1,0 +1,24 @@
+@model OrchardCore.ContentFields.ViewModels.DisplayContentPickerFieldViewModel
+
+@inject OrchardCore.ContentManagement.IContentManager ContentManager
+@inject OrchardCore.ContentManagement.Display.IContentItemDisplayManager ContentItemDisplayManager
+@*
+    Alternates (ie template names)
+    - ContentPickerField_Detail
+    - HTMLSnippetWidget__Snippet
+    - HTMLSnippetWidget__HTMLSnippetWidget__Snippet
+    - HTMLSnippetWidget__ContentPickerField
+    - HTMLSnippetWidget_Detail__Snippet
+    - HTMLSnippetWidget_Detail__HTMLSnippetWidget__Snippet
+    - HTMLSnippetWidget_Detail__ContentPickerField
+*@
+@{
+    var contentItem = await ContentManager.GetAsync(Model.ContentItemIds[0]);
+    var itemContent = await ContentItemDisplayManager.BuildDisplayAsync(contentItem, null, null);
+    @await DisplayAsync(itemContent)
+
+}
+
+@*tag.RenderStartTag()
+    <h1>Menu widget</h1>
+    @tag.RenderEndTag()*@

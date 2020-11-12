@@ -1,0 +1,99 @@
+@inject IOptions<AutorouteOptions> AutorouteOptions
+@inject IContentHandleManager ContentHandleManager;
+@inject IContentManager ContentManager;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
+
+@using Microsoft.AspNetCore.Routing
+@using Microsoft.Extensions.Options
+@using OrchardCore.ContentManagement;
+@using OrchardCore.ContentManagement.Routing
+@using OrchardCore.Menu.Models;
+
+@{
+    // Retrieving the menu we want to build the breadcrumb menu for, in this case the one with the alias "main-menu".
+    var menu = await ContentManager.GetAsync(await ContentHandleManager.GetContentItemIdAsync("alias:main-menu"));
+
+    // We'll need the current URL to be able to check which menu item corresponds to the page.
+    var currentRelativeUrl = HttpContextAccessor.HttpContext.Request.Path;
+
+    var breadcrumbItems = new Stack<(string url, string name, ContentItem contentItem)>();
+
+    // Building the path in the menu tree to the current item.
+    bool SearchActiveItem(IEnumerable<ContentItem> menuItems)
+    {
+        if (menuItems == null)
+        {
+            return false;
+        }
+
+        foreach (var menuItem in menuItems.Select(i => GetLink(i)))
+        {
+
+            if (!string.IsNullOrEmpty(menuItem.url))
+            {
+                var url = menuItem.url.StartsWith("~")
+                    ? menuItem.url.Substring(1)
+                    : menuItem.url;
+
+                if (url.Equals(currentRelativeUrl, StringComparison.OrdinalIgnoreCase))
+                {
+                    breadcrumbItems.Push(menuItem);
+                    return true;
+                }
+
+                if (SearchActiveItem(menuItem.contentItem.As<MenuItemsListPart>()?.MenuItems))
+                {
+                    breadcrumbItems.Push(menuItem);
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    (string url, string name, ContentItem contentItem) GetLink(ContentItem item)
+    {
+        var linkMenuItemPart = item.As<LinkMenuItemPart>();
+        if (linkMenuItemPart != null)
+        {
+            var url = linkMenuItemPart.Url;
+            return (url, Name(url, linkMenuItemPart.Name), item.ContentItem);
+        }
+
+        var menuItemPart = item.As<ContentMenuItemPart>();
+        if (menuItemPart != null)
+        {
+            var routeValues = new RouteValueDictionary(AutorouteOptions.Value.GlobalRouteValues)
+            {
+                [AutorouteOptions.Value.ContentItemIdKey] = menuItemPart.ContentItem.Content.ContentMenuItemPart.SelectedContentItem.ContentItemIds[0]
+            };
+            var linkUrl = Url.RouteUrl(routeValues);
+
+            return (linkUrl, Name(linkUrl, menuItemPart.Name), item.ContentItem);
+        }
+
+        return (null, "Unknown", item.ContentItem);
+
+        string Name(string url, string name)
+        {
+            return url == "/"
+                ? T["Home"].Value
+                : name;
+        }
+    }
+
+    SearchActiveItem(menu.As<MenuItemsListPart>().MenuItems);
+}
+
+<div class="govuk-breadcrumbs ">
+    <ol class="govuk-breadcrumbs__list">
+        @while (breadcrumbItems.TryPop(out var item))
+        {
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="@Url.Content(item.url)">@item.name</a>
+            </li>
+        }
+    </ol>
+</div>

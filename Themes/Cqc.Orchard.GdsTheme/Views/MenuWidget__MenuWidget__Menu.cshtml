@@ -1,0 +1,22 @@
+@using OrchardCore.Alias.Models
+@using OrchardCore.ContentManagement
+
+@model OrchardCore.ContentFields.ViewModels.DisplayContentPickerFieldViewModel
+
+@inject IContentManager ContentManager
+
+@*
+    Alternates (ie template names)
+    - ContentPickerField_Detail
+    - MenuWidget__Menu
+    - MenuWidget__MenuWidget__Menu
+    - MenuWidget__ContentPickerField
+    - MenuWidget_Detail__Menu
+    - MenuWidget_Detail__MenuWidget__Menu
+    - MenuWidget_Detail__ContentPickerField
+*@
+@{
+    var contentItem = await ContentManager.GetAsync(Model.ContentItemIds[0]);
+    var alias = contentItem.As<AliasPart>()?.Alias;
+}
+<menu alias="alias:@alias" cache-id="menu-getting-started" cache-fixed-duration="00:05:00" cache-tag="alias:@alias"></menu>

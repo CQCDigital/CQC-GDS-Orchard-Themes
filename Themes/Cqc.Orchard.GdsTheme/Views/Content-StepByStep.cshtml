@@ -1,0 +1,35 @@
+@Orchard.ConsoleLog((object)Model.Content)
+
+<div class="@String.Join(" ", Model.Classes.ToArray())">
+    @if (Model.Header != null || Model.Meta != null)
+    {
+        <div class="stepbystep-header">
+            @await DisplayAsync(Model.Header)
+            @if (Model.Meta != null)
+            {
+                <div class="stepbystep-metadata">
+                    @await DisplayAsync(Model.Meta)
+                </div>
+            }
+        </div>
+    }
+
+
+    <div id="step-by-step-navigation" class="app-step-nav app-step-nav--active govuk-width-container" data-show-text="Show" data-hide-text="Hide" data-show-all-text="Show all" data-hide-all-text="Hide all">
+        <div class="app-step-nav__controls govuk-width-container">
+            <button id="showAllSteps" aria-expanded="false" class="app-step-nav__button app-step-nav__button--controls govuk-button" aria-controls="step-panel-register-to-provide-care-1" data-module="govuk-button">Show all</button>
+        </div>
+        <ol class="app-step-nav__steps">
+            @await DisplayAsync(Model.Content)
+        </ol>
+    </div>
+
+
+
+    @if (Model.Footer != null)
+    {
+        <div class="stepbystep-footer">
+            @await DisplayAsync(Model.Footer)
+        </div>
+    }
+</div>
