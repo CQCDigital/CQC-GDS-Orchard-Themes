@@ -3,7 +3,7 @@ using OrchardCore.Modules.Manifest;
 
 
 [assembly: Theme(
-    Name = "CQC Orchard GDS Admin Theme",
+    Name = "CQC GDS Admin Theme",
     BaseTheme = "TheAdmin",
     Author = "CQC",
     Website = "https://github.com/CQCDigital/GDS-CQC-Orchard-Admin-Theme",
